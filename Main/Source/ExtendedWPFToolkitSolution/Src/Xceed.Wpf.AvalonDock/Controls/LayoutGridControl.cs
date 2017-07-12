@@ -79,7 +79,10 @@ namespace Xceed.Wpf.AvalonDock.Controls
                     Dispatcher.BeginInvoke(new Action(() =>
                         {
                             _asyncRefreshCalled = null;
-                            UpdateChildren();
+                            if (args.Change == ChildrenTreeChange.DirectChildrenChanged)
+                            {
+                                UpdateChildren();
+                            }
                         }), DispatcherPriority.Normal, null);
                 };
 
