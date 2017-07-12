@@ -2050,9 +2050,9 @@ namespace Xceed.Wpf.AvalonDock
                     var documentsToRemove = Layout.Descendents().OfType<LayoutDocument>().Where(d => e.OldItems.Contains(d.Content)).ToArray();
                     foreach (var documentToRemove in documentsToRemove)
                     {
+                        this.RemoveViewFromLogicalChild(documentToRemove); 
                         (documentToRemove.Parent as ILayoutContainer).RemoveChild(
                             documentToRemove);
-                        this.RemoveViewFromLogicalChild( documentToRemove );
                     }
                 }
             }
@@ -2126,9 +2126,9 @@ namespace Xceed.Wpf.AvalonDock
                 var documentsToRemove = Layout.Descendents().OfType<LayoutDocument>().ToArray();
                 foreach (var documentToRemove in documentsToRemove)
                 {
+                    this.RemoveViewFromLogicalChild(documentToRemove);
                     (documentToRemove.Parent as ILayoutContainer).RemoveChild(
                         documentToRemove);
-                    this.RemoveViewFromLogicalChild( documentToRemove );
                 }
             }
 
@@ -2151,9 +2151,9 @@ namespace Xceed.Wpf.AvalonDock
 
             foreach (var documentToRemove in documentsToRemove)
             {
+                this.RemoveViewFromLogicalChild(documentToRemove);
                 (documentToRemove.Parent as ILayoutContainer).RemoveChild(
                     documentToRemove);
-                this.RemoveViewFromLogicalChild( documentToRemove );
             }
 
             var documentsSourceAsNotifier = documentsSource as INotifyCollectionChanged;
@@ -2405,9 +2405,9 @@ namespace Xceed.Wpf.AvalonDock
                     foreach (var anchorableToRemove in anchorablesToRemove)
                     {
                         anchorableToRemove.Content = null;
+                        this.RemoveViewFromLogicalChild(anchorableToRemove);
                         (anchorableToRemove.Parent as ILayoutContainer).RemoveChild(
                             anchorableToRemove);
-                        this.RemoveViewFromLogicalChild( anchorableToRemove );
                     }
                 }
             }
@@ -2496,9 +2496,9 @@ namespace Xceed.Wpf.AvalonDock
                 var anchorablesToRemove = Layout.Descendents().OfType<LayoutAnchorable>().ToArray();
                 foreach (var anchorableToRemove in anchorablesToRemove)
                 {
+                    this.RemoveViewFromLogicalChild(anchorableToRemove);
                     (anchorableToRemove.Parent as ILayoutContainer).RemoveChild(
                         anchorableToRemove);
-                    this.RemoveViewFromLogicalChild( anchorableToRemove );
                 }
             }
 
@@ -2519,9 +2519,9 @@ namespace Xceed.Wpf.AvalonDock
 
             foreach (var anchorableToRemove in anchorablesToRemove)
             {
+                this.RemoveViewFromLogicalChild(anchorableToRemove);
                 (anchorableToRemove.Parent as ILayoutContainer).RemoveChild(
                     anchorableToRemove);
-                this.RemoveViewFromLogicalChild( anchorableToRemove );
             }
 
             var anchorablesSourceAsNotifier = anchorablesSource as INotifyCollectionChanged;
