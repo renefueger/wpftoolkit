@@ -453,7 +453,6 @@ UpdateSourceTrigger.PropertyChanged ) );
       this.AddHandler( Mouse.PreviewMouseDownOutsideCapturedElementEvent, new RoutedEventHandler( this.HandleClickOutsideOfControlWithMouseCapture ),
 
 true );
-      this.IsKeyboardFocusWithinChanged += this.UpDownBase_IsKeyboardFocusWithinChanged;
     }
 
     #endregion //Constructors
@@ -474,6 +473,7 @@ true );
 
       if( TextBox != null )
       {
+        TextBox.LostFocus -= new RoutedEventHandler(TextBox_LostFocus);
         TextBox.TextChanged -= new TextChangedEventHandler( TextBox_TextChanged );
         TextBox.RemoveHandler( Mouse.PreviewMouseDownEvent, new MouseButtonEventHandler( this.TextBox_PreviewMouseDown ) );
       }
@@ -483,6 +483,7 @@ true );
       if( TextBox != null )
       {
         TextBox.Text = Text;
+        TextBox.LostFocus += new RoutedEventHandler(TextBox_LostFocus);
         TextBox.TextChanged += new TextChangedEventHandler( TextBox_TextChanged );
         TextBox.AddHandler( Mouse.PreviewMouseDownEvent, new MouseButtonEventHandler( this.TextBox_PreviewMouseDown ), true );
       }
@@ -702,12 +703,9 @@ RoutedPropertyChangedEventHandler<object> ), typeof( UpDownBase<T> ) );
       }
     }
 
-    private void UpDownBase_IsKeyboardFocusWithinChanged( object sender, DependencyPropertyChangedEventArgs e )
+    private void TextBox_LostFocus(object sender, RoutedEventArgs e)
     {
-      if( !(bool)e.NewValue )
-      {
-        this.CommitInput();
-      }
+        CommitInput();
     }
 
     private void RaiseInputValidationError( Exception e )
