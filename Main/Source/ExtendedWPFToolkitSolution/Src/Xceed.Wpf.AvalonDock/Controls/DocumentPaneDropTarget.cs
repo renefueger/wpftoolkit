@@ -204,24 +204,28 @@ namespace Xceed.Wpf.AvalonDock.Controls
                         int i = 0;
                         if( _tabIndex != -1 )
                         {
-                          i = _tabIndex;
+                            i = _tabIndex;
                         }
                         else
                         {
-                          var previousContainer = ((ILayoutPreviousContainer)sourceModel).PreviousContainer;
-                          if( object.ReferenceEquals( previousContainer, targetModel ) && (sourceModel.PreviousContainerIndex != -1) )
-                          {
-                            i = sourceModel.PreviousContainerIndex;
-                          }
+                            var previousContainer = ((ILayoutPreviousContainer)sourceModel).PreviousContainer;
+                            if( object.ReferenceEquals( previousContainer, targetModel ) && (sourceModel.PreviousContainerIndex != -1) )
+                            {
+                                i = sourceModel.PreviousContainerIndex;
+                            }
                         }
                         sourceModel.IsActive = false;
-                        paneModel.Children.Insert(i, sourceModel);
+
+                        if (paneModel != null)
+                        {
+                            var insertIndex = Math.Max(0, Math.Min(i, paneModel.ChildrenCount));
+                            paneModel.Children.Insert(insertIndex, sourceModel);
+                        }
+                       
                         sourceModel.IsActive = true;
                     }
                     break;
                     #endregion
-
-
             }
 
             base.Drop(floatingWindow);
