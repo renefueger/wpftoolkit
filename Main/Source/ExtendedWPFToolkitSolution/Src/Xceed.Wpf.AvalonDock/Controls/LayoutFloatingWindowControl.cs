@@ -60,7 +60,7 @@ namespace Xceed.Wpf.AvalonDock.Controls
 
 
                 HwndSource _wpfContentHost = null;
-                Border _rootPresenter = null;
+                FloatingWindowContentControl _rootPresenter = null;
                 DockingManager _manager = null;
 
                 protected override System.Runtime.InteropServices.HandleRef BuildWindowCore(System.Runtime.InteropServices.HandleRef hwndParent)
@@ -73,7 +73,7 @@ namespace Xceed.Wpf.AvalonDock.Controls
                         Height = 1
                     });
 
-                    _rootPresenter = new Border() { Child = new AdornerDecorator() { Child = Content }, Focusable = true };
+                    _rootPresenter = new FloatingWindowContentControl() { Content = this.Content };
                     _rootPresenter.SetBinding(Border.BackgroundProperty, new Binding("Background") { Source = _owner });
                     _wpfContentHost.RootVisual = _rootPresenter;
                     _wpfContentHost.SizeToContent = SizeToContent.Manual;
@@ -142,7 +142,7 @@ namespace Xceed.Wpf.AvalonDock.Controls
                 protected virtual void OnContentChanged(DependencyPropertyChangedEventArgs e)
                 {
                     if (_rootPresenter != null)
-                        _rootPresenter.Child = Content;
+                        _rootPresenter.Content = Content;
                 }
 
                 #endregion
