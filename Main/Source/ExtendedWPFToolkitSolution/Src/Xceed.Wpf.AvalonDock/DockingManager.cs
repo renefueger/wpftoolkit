@@ -1808,21 +1808,24 @@ namespace Xceed.Wpf.AvalonDock
                 }
             }
 
-            foreach (var areaHost in this.FindVisualChildren<LayoutDocumentPaneControl>())
-            {
-                _areas.Add(new DropArea<LayoutDocumentPaneControl>(
-                    areaHost,
-                    DropAreaType.DocumentPane));
-            }
-
-            foreach (var areaHost in this.FindVisualChildren<LayoutDocumentPaneGroupControl>())
-            {
-                var documentGroupModel = areaHost.Model as LayoutDocumentPaneGroup;
-                if (documentGroupModel.Children.Where(c => c.IsVisible).Count() == 0)
+            if (isDraggingDocuments)
+            { 
+                foreach (var areaHost in this.FindVisualChildren<LayoutDocumentPaneControl>())
                 {
-                    _areas.Add(new DropArea<LayoutDocumentPaneGroupControl>(
+                    _areas.Add(new DropArea<LayoutDocumentPaneControl>(
                         areaHost,
-                        DropAreaType.DocumentPaneGroup));
+                        DropAreaType.DocumentPane));
+                }
+
+                foreach (var areaHost in this.FindVisualChildren<LayoutDocumentPaneGroupControl>())
+                {
+                    var documentGroupModel = areaHost.Model as LayoutDocumentPaneGroup;
+                    if (documentGroupModel.Children.Where(c => c.IsVisible).Count() == 0)
+                    {
+                        _areas.Add(new DropArea<LayoutDocumentPaneGroupControl>(
+                            areaHost,
+                            DropAreaType.DocumentPaneGroup));
+                    }
                 }
             }
 
