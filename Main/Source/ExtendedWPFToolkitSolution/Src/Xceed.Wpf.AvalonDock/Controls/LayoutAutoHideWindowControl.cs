@@ -141,7 +141,7 @@ namespace Xceed.Wpf.AvalonDock.Controls
 
         }
 
-        ContentPresenter _internalHostPresenter = new ContentPresenter();
+        AutoHideWindowContentControl _internalHostPresenter = new AutoHideWindowContentControl();
         Grid _internalGrid = null;
         LayoutAnchorableControl _internalHost = null;
         AnchorSide _side;
