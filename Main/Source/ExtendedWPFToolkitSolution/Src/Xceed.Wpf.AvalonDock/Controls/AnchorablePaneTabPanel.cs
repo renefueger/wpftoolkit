@@ -65,7 +65,7 @@ namespace Xceed.Wpf.AvalonDock.Controls
             double desideredWidth = visibleChildren.Sum(ch => ch.DesiredSize.Width);
             double offsetX = 0.0;
 
-            if (finalWidth > desideredWidth)
+            if (finalWidth >= desideredWidth)
             {
                 foreach (FrameworkElement child in visibleChildren)
                 {
